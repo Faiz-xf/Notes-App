@@ -9,35 +9,27 @@ onMounted(store.fetchNotes)
 </script>
 
 <template>
-    <v-container fluid class = "gray-darken-3">
-    <v-container v-if="store.isLoading">
+    <v-container fluid>
+      <v-container v-if="store.isLoading" class="d-flex justify-center align-center">
         <v-progress-circular indeterminate></v-progress-circular>
         <span class = "mx-4 text-h6">Loading...</span>
     </v-container>
-      <v-row v-else class="fill-height">
+      <v-row v-else>
         <v-col cols="2" align="center">
           <SideBar />
         </v-col>
 
         <v-col v-if="store.activeNote" cols="10">
-          <v-row justify="end" class="mb-4">
-            <v-btn @click="store.updateNote" class="font-weight-bold">Update</v-btn>
+          <v-row justify="end" class="mx-2 my-4">
+            <v-btn @click="store.updateNote" class="font-weight-bold" color = "btn-green">Update</v-btn>
           </v-row>
 
           <v-text-field
             v-model="store.inputTitle"
-            label="Title"
-            class="my-2"
-            outlined
-            color="white"
           ></v-text-field>
 
           <v-textarea
             v-model="store.inputContent"
-            label="Content"
-            class="my-2"
-            outlined
-            color="white"
           ></v-textarea>
         </v-col>
       </v-row>
